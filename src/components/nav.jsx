@@ -11,20 +11,23 @@ export default function Nav(){
         }
         else {
             setPopup(false);
-            
         }
+
+        console.log(popup);
     }
 
+    //className={popup == false ? "pop-up" : "pop-up display-popup"}
+
     return (
-        <div id="nav" class="nav-links">
+        <div id="nav" className="nav-links">
             <h2>Signup Form</h2>
-            <a className="abt-button" onClick={()=> handlePopup()}>About</a>
+            <a onClick={()=> handlePopup()}>Info</a>
             <hr></hr>
-            <div id="popup" className={popup == false ? "pop-up" : "pop-up display-popup"}>
-                <a className="close-btn" onClick={() => handlePopup()}>X</a>
+            <div className={popup == false ? "pop-up" : "pop-up display-popup"}>
+                <a className="close-btn" onClick={() => handlePopup()}>[x]</a>
                 <div className="popup-content">
-                    <h2>About</h2>
-                    <p>The San Marcos Will not save and distribute your data.</p>
+                    <h2>Info</h2>
+                    <p>The San Marcos Library will not save or distribute your data.</p>
                     <p>All Data gathered in this form is for attendance purposes only.</p>
                     <p>For more information refer to our data use policy.</p>
                     <p>Thank you for taking interest in this program!</p>

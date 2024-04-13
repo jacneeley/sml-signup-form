@@ -1,14 +1,14 @@
 ---
 import Base from "../layouts/base.astro"
 import Nav from "../components/nav.jsx";
-import Form from "../components/form.jsx";
+import Form from "../components/signup.astro";
 
 const pageTitle = "Sign Up!"
 ---
 <Base pageTitle = {pageTitle}>
 	<Nav client:load/>
 	<div class="content">
-		<Form client:load/>
+		<Form />
 	</div>
 </Base>
 
