@@ -6,10 +6,9 @@ import Form from "../components/form.jsx";
 const pageTitle = "Sign Up!"
 ---
 <Base pageTitle = {pageTitle}>
-	<Nav />
+	<Nav client:load/>
 	<div class="content">
-		<h2>Computer Science Camp </h2>
-		<Form />
+		<Form client:load/>
 	</div>
 </Base>
 
