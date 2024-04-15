@@ -16,8 +16,6 @@ export default function Nav(){
         console.log(popup);
     }
 
-    //className={popup == false ? "pop-up" : "pop-up display-popup"}
-
     return (
         <div id="nav" className="nav-links">
             <h2>Signup Form</h2>

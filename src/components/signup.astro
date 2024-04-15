@@ -2,44 +2,47 @@
 if (Astro.request.method == "POST"){
     try{
         const data = await Astro.request.formData();
-        const parentName = data.get("parentName");
-        const email = data.get("email");
-        const parentPhone = data.get("parentPhone");
-        const childName = data.get("childName");
-        const childAge = data.get("childAge");
+        const payload = Object.fromEntries(data);
         
+        //send to backend
+        sendToBackend(payload);
+
     } catch(err){
         if(err instanceof Error){
             console.error(err.message);
         }
     }
 }
+
+function sendToBackend(jsobj){
+    console.log(jsobj);
+}
 ---
 
 <div class='form-container'>
     <h2>Computer Science Camp </h2>
-    <form method="POST">
+    <form method="POST" onsubmit="alert('sent');">
         <label>Parent/Guardian's Full Name:</label>
-        <input class="text-input" name="parentName" type="text" required/>
+        <input class="text-input" name="parentName" type="text" maxlength="50" required/>
 
         <label>Guardian Email:</label>
-        <input class="text-input" name="email" type="email" placeholder="email@email.com" required/>
+        <input class="text-input" name="email" type="email" placeholder="email@email.com" maxlength="100" required/>
 
         <label>Guardian Phone:</label>
-        <input class="text-input" name="parentPhone" type="text" placeholder="For emergency contact only" maxlength="12" required/>
+        <input class="text-input" name="parentPhone" type="text" placeholder="For emergency contact only" minlength="10" maxlength="12" required/>
         
         <label>Child's Full Name:</label>
-        <input class="text-input" name="childName" type="text" required/>
+        <input class="text-input" name="childName" type="text" maxlength="50" required/>
         
         <label>Child's Age:</label>
-        <input class="text-input" name="childAge" type="text" min="10" required/>
+        <input class="text-input" name="childAge" type="text" min=9 maxlength="2" required/>
         
 
         <p>A laptop is needed for this camp.The library can provide one to those who need one, but there is a limited quantity.</p>
         <p>Will your child be able to bring their own laptop?</p>
-        
-        <label class ="radio-label"><input type="radio" value="Yes" name="Yes" required/>Yes</label>
-        <label class ="radio-label"><input type="radio" value="No" name="No" checked required/>No</label>
+
+        <label class ="radio-label"><input type="radio" value="Yes" name="laptop" required/>Yes</label>
+        <label class ="radio-label"><input type="radio" value="No" name="laptop" checked required/>No</label>
         
         <button class= "submit-btn" type="submit">Submit</button>
     </form>      
