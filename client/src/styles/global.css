@@ -1,0 +1,156 @@
+html { width: 100%}
+
+:root{
+    font-weight: 500;
+    font-size: larger;
+    font-family: 'Montserrat';
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    --text-color: rgb(32, 32, 32);
+    --hover-color: rgb(105, 105, 105);
+    --nav-color: #00467f;
+    --nav-text:whitesmoke;
+    --nav-link: #187cce;
+    --nav-link-hover: #078fff;
+    background-color: var(--nav-color);
+    color: var(--text-color);
+}
+
+a{
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+a:hover{
+    color:var(--hover-color);
+    cursor:pointer;
+}
+
+hr{
+    color: var(--nav-text);
+}
+
+#nav{
+    color:var(--nav-text);
+}
+
+#nav h2{
+    display: inline;
+}
+
+#nav a{
+    color: var(--nav-text);
+    display:inline;
+    float: right;
+}
+
+#nav a:hover{
+    color: var(--nav-link-hover)
+}
+
+.content{
+    background-color: whitesmoke;
+    position: relative;
+    height: 100vh;
+    border-radius: 10px;
+}
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Popup */
+
+.pop-up{
+    position: fixed;
+    width: 400px;
+    max-width: 100%;
+    height:350px;
+    top: -50%;
+    left:0;
+    right:0;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 1rem;
+    border: 2px solid #049C9C;
+    background-color: var(--nav-color);
+    visibility: hidden;
+    transition: all 0.5s;
+    z-index: 10;
+}
+
+.popup-content{
+    background-color: var(--nav-color);
+    margin: 0 auto;
+    padding:10px;
+    width: 80%;
+    height: auto;
+}
+
+.pop-content a{
+    color: var(--nav-link);
+}
+
+.popup-content a:hover{
+    color: var(--nav-link-hover);
+}
+
+.close-btn{
+    display: inline;
+    float: right;
+    margin-right:.5rem;
+    cursor:pointer;
+}
+
+.display-popup{
+    top:25%;
+    visibility: visible;
+    z-index:10;
+}
+
+/* form */
+.form-container{
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 1rem;
+    position: relative;
+}
+
+label{
+    display: block;
+    padding-top: .5rem;
+    color: #5c8727;
+}
+
+input {
+    margin-top: .5rem;
+}
+
+.text-input{
+    display: block;
+    width: 50%;
+}
+
+.radio-label{
+    color: var(--text-color);
+}
+
+.submit-btn{
+    display: block;
+    margin: 2rem auto;
+    width: 30%;
+    height: 40px;
+    border-radius: 20px;
+    background-color: whitesmoke;
+    border: 2px var(--nav-color) solid;
+}
+
+.submit-btn:hover{
+    cursor: pointer;
+    background-color: var(--nav-link-hover);
+    color: whitesmoke;
+    border-color: var(--nav-color);
+}

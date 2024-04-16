@@ -1,0 +1,33 @@
+---
+import Base from "../layouts/base.astro"
+import Nav from "../components/nav.jsx";
+
+const pageTitle = "Success!"
+---
+<Base pageTitle = {pageTitle}>
+	<Nav client:load/>
+    <div class="parent-content">
+        <div class="content">
+            <h1 class="success">Success!</h1>
+            <p>You're signed up and ready to go.</p>
+            <p>Camp starts, June 22nd at 12pm. Pick up is at 2pm.</p>
+            <p>Be sure to bring a lunch or eat before.</p>
+            <p>We will see you there!</p>
+        </div>
+    </div>
+</Base>
+
+<style>
+    .success{
+        color: green;
+    }
+
+    .parent-content{
+        background-color: whitesmoke;
+    }
+
+    .content{
+        width: 600px;
+        margin: 0 auto;
+    }
+</style>../components/nav.js
