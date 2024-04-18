@@ -1,17 +1,13 @@
 from flask import Flask, redirect ,url_for, json
 from flask_cors import CORS, cross_origin
-from flask_sqlalchemy import SQLAlchemy
-from utils.dbController import initDB
+from utils.initApp import app
+from utils.dbController import initDB, deleteUser, displayAll
 
-app=Flask(__name__)
 CORS(app, resources={r"/attendees/": {"origins": "*"}})
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users.sqlite3"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-db = SQLAlchemy(app)    
-#db.init_app(app)
-
-initDB(app,db)
+with app.app_context():
+        initDB()
+        print(displayAll())
 
 @app.route("/")
 def index():
@@ -19,11 +15,16 @@ def index():
 
 @app.route("/attendees/", methods=['GET'])
 def attendees():
-        return "<html>Attendees</html>"
+        return displayAll()
     
-# @app.route("/attendees/add", methods=['POST'])
+# @app.route("/attendees/add/", methods=['POST'])
 # def add_attendees():
 #         return 
+
+@app.route("/attendees/del/", methods=['GET'])
+def del_attendees():
+        deleteUser(1)
+        return redirect(url_for('attendees'))
 
 if __name__ == "__main__":
         app.run(debug=True)
