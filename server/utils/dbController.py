@@ -5,11 +5,11 @@ from .initApp import db
 
 class User(db.Model):
     _id = db.Column("id", db.Integer, primary_key = True)
-    email = db.Column(db.String(100), unique = True)
-    parentName = db.Column(db.String(100))
-    phone = db.Column(db.String(12))
-    childName = db.Column(db.String(100))
-    childAge = db.Column(db.Integer)
+    email = db.Column("email",db.String(100))
+    parentName = db.Column("parentName",db.String(100))
+    phone = db.Column("phone",db.String(12))
+    childName = db.Column("childName",db.String(100))
+    childAge = db.Column("childAge",db.Integer)
 
     def __init__(self, email, parentName, phone, childName, childAge):
         self.email = email
@@ -33,7 +33,7 @@ class UserSchema(Schema):
 
 
 def initDB():
-    #create table
+    #create instance
     db.create_all()
         
     #check if admin user already exists, if not add admin
@@ -49,11 +49,29 @@ def initDB():
         print("db found!")
 
 
-def deleteUser(id):
-    delUser = db.get_or_404(User,id)
-    db.session.delete(delUser)
+def createUser(user):
+    # user = {
+    #     "email" : "test@test.com",
+    #     "parentName" : "test test",
+    #     "phone": "999-999-9999",
+    #     "childName": "Test Test",
+    #     "childAge": 12
+    # }
+    
+    addUser = User(addUser.get("email"), addUser.get("parentName"), user.get("phone"), user.get("childName"), user.get("childAge"))
+    
+    db.session.add(addUser)
     db.session.commit()
-    print("User has been permanently deleted.")
+
+
+def deleteUser(id):
+    if db.session.query(exists().where(User._id == id)).scalar() is True:
+        delUser = db.get_or_404(User,id)
+        db.session.delete(delUser)
+        db.session.commit()
+        print("User has been permanently deleted.")
+    else:
+        print("User does not exist")
 
    
 def displayAll():
