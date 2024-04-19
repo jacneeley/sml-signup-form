@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React from "react";
 import {useState} from 'react';
 
@@ -29,14 +30,13 @@ export default function form(){
 
     function sendToBackend(jsobj){
         console.log(jsobj)
-        // fetch("localhost:5000/attendees", {
-        //     method: "POST",
-        //     body: jsobj,
-        //     headers: {"Accept": "application/json, text/plain, */*"}
-        // })
-        // .then(response => response.json())
-        // .then(data => console.log(data))
-        // .catch(error => console.error("ERROR: "+ error));
+        axios({
+            method: "post",
+            url:'http://localhost:5000/attendees/add', 
+            data:jsobj,
+        })
+        .then(response => {console.log(response)})
+        .catch(error => console.error("ERROR: "+ error));
     }
 
     
