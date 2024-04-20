@@ -4,7 +4,23 @@ import {useState} from 'react';
 
 export default function form(){
 
-    const submitForm= (e)=> {
+    const [AdultName, setAdultName] = useState("");
+    const [parentEmail, setParentEmail] = useState("");
+    const [parentPhone, setParentPhone] = useState("");
+    const [kidName, setKidName] = useState("");
+    const [age, setAge] = useState("");
+    const[radio, setRadio] = useState("No");
+
+    const handleChange = (e) => {
+        setAdultName(e.target.value);
+        setParentEmail(e.target.value);
+        setParentPhone(e.target.value);
+        setKidName(e.target.value);
+        setAge(e.target.value);
+        setRadio(e.target.value);
+    }
+
+    const submitForm= (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
 
@@ -14,8 +30,9 @@ export default function form(){
         const phone = formData.get("parentPhone");
         const childName = formData.get("childName");
         const childAge = formData.get("childAge");
+        const hasLaptop = formData.get("laptop");
 
-        if(!parentName || !email || !phone || !childName || !childAge){
+        if(!parentName || !email || !phone || !childName || !childAge || !hasLaptop){
             alert("Please enter all missing values");
             return;
         }
@@ -37,11 +54,15 @@ export default function form(){
         })
         .then(response => {console.log(response)})
         .catch(error => console.error("ERROR: "+ error));
+
+        // if(response.status == 200){
+        //     alert("Sent!")
+        // }
+        // else {
+        //     alert("Error...")
+        // }
     }
 
-    
-    // <label className ="radio-label"><input type="radio" value="Yes" name="laptop" required/>Yes</label>
-    // <label className ="radio-label"><input type="radio" value="No" name="laptop" checked required/>No</label>
 
     return(
         <div className='form-container'>
@@ -65,6 +86,30 @@ export default function form(){
 
                 <p>A laptop is needed for this camp.The library can provide one to those who need one, but there is a limited quantity.</p>
                 <p>Will your child be able to bring their own laptop?</p>
+
+
+                <label className ="radio-label">
+                    <input 
+                        type="radio" 
+                        value="Yes" 
+                        name="laptop" 
+                        checked={radio === "Yes"} 
+                        required
+                        onChange = {handleChange}
+                    />
+                    Yes
+                    </label>
+                <label className ="radio-label">
+                    <input 
+                        type="radio" 
+                        value="No" 
+                        name="laptop" 
+                        checked={radio === "No"} 
+                        required
+                        onChange = {handleChange}
+                    />
+                    No
+                    </label>
 
 
                 <button className= "submit-btn" type="submit">Submit</button>
