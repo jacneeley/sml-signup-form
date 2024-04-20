@@ -1,6 +1,6 @@
-from flask import Flask, redirect ,url_for, request, json
+from flask import Flask, redirect ,url_for, request, jsonify
 from flask_cors import CORS, cross_origin
-from utils.initApp import app, _build_cors_preflight_response, _corsify_actual_response
+from utils.initApp import app
 from utils.dbController import initDB, createUser, deleteUser, displayAll
 
 CORS(app, resources={r"/attendees/*": {"origins": "*"},

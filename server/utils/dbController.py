@@ -10,17 +10,19 @@ class User(db.Model):
     phone = db.Column("phone",db.String(12))
     childName = db.Column("childName",db.String(100))
     childAge = db.Column("childAge",db.Integer)
+    laptop = db.Column("laptop", db.String(3))
 
-    def __init__(self, email, parentName, phone, childName, childAge):
+    def __init__(self, email, parentName, phone, childName, childAge, hasLaptop):
         self.email = email
         self.parentName = parentName
         self.phone = phone
         self.childName = childName
         self.childAge = childAge
+        self.laptop = hasLaptop
         
     def __repr__(self):
-        return "<User: (email='%s', parentName='%s', phone='%s', childName='%s', childAge='%s')>" % (
-            self.email, self.parentName, self.phone, self.childName, self.childAge)
+        return "<User: (email='%s', parentName='%s', phone='%s', childName='%s', childAge='%s', hasLaptop='%s')>" % (
+            self.email, self.parentName, self.phone, self.childName, self.childAge, self.laptop)
 
 
 class UserSchema(Schema):
@@ -30,6 +32,7 @@ class UserSchema(Schema):
     phone = fields.String()
     childName = fields.String()
     childAge = fields.Integer()
+    laptop = fields.String()
 
 
 def initDB():
@@ -39,7 +42,14 @@ def initDB():
     #check if admin user already exists, if not add admin
     if db.session.query(exists().where(User.email == "admin@test.com")).scalar() is False:
         print("setting up DB...")
-        usr = User("admin@test.com", "Admin", "999-999-9988", "Jacob Neeley", 23)
+        usr = User(
+            "admin@test.com",
+            "Admin",
+            "999-999-9988",
+            "Jacob Neeley",
+            23,
+            "Yes"
+        )
 
         db.session.add(usr)
         db.session.commit()
@@ -49,16 +59,15 @@ def initDB():
         print("db found!")
 
 
-def createUser(user):
-    # user = {
-    #     "email" : "test@test.com",
-    #     "parentName" : "test test",
-    #     "phone": "999-999-9999",
-    #     "childName": "Test Test",
-    #     "childAge": 12
-    # }
-    
-    addUser = User(addUser.get("email"), addUser.get("parentName"), user.get("phone"), user.get("childName"), user.get("childAge"))
+def createUser(user):    
+    addUser = User(
+        user.get("email"),
+        user.get("parentName"),
+        user.get("parentPhone"),
+        user.get("childName"),
+        user.get("childAge"),
+        user.get("laptop")
+    )
     
     db.session.add(addUser)
     db.session.commit()
