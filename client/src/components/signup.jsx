@@ -4,19 +4,9 @@ import {useState} from 'react';
 
 export default function form(){
 
-    const [AdultName, setAdultName] = useState("");
-    const [parentEmail, setParentEmail] = useState("");
-    const [parentPhone, setParentPhone] = useState("");
-    const [kidName, setKidName] = useState("");
-    const [age, setAge] = useState("");
     const[radio, setRadio] = useState("No");
 
     const handleChange = (e) => {
-        setAdultName(e.target.value);
-        setParentEmail(e.target.value);
-        setParentPhone(e.target.value);
-        setKidName(e.target.value);
-        setAge(e.target.value);
         setRadio(e.target.value);
     }
 
@@ -52,21 +42,23 @@ export default function form(){
             url:'http://localhost:5000/attendees/add', 
             data:jsobj,
         })
-        .then(response => {console.log(response)})
+        .then(response => {console.log(response)
+            console.log(response.status);
+            if(response.status == 200){
+                alert("Sent!");
+                return window.location.replace("/success");
+            }
+            else {
+                alert("Error..." + "\n" + response.statusText + "\nPlease try again later, or email JakNeeley@outlook.com");
+            }
+        })
         .catch(error => console.error("ERROR: "+ error));
-
-        // if(response.status == 200){
-        //     alert("Sent!")
-        // }
-        // else {
-        //     alert("Error...")
-        // }
     }
 
 
     return(
         <div className='form-container'>
-            <h2>Computer Science Camp </h2>
+            <h2>Code Camp </h2>
             <form onSubmit={submitForm}>
                 <label>Parent/Guardian's Full Name:</label>
                 <input className="text-input" name="parentName" type="text" maxLength="50" required/>

@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/base.astro"
 import Nav from "../components/nav.jsx";
+import Submission from "../components/submission.jsx"
 
 const pageTitle = "Success!"
 ---
@@ -13,6 +14,7 @@ const pageTitle = "Success!"
             <p>Camp starts, June 22nd at 12pm. Pick up is at 2pm.</p>
             <p>Be sure to bring a lunch or eat before.</p>
             <p>We will see you there!</p>
+            <Submission client:load/>
         </div>
     </div>
 </Base>
@@ -30,4 +32,4 @@ const pageTitle = "Success!"
         width: 600px;
         margin: 0 auto;
     }
-</style>../components/nav.js
+</style>../components/submission.jsx
