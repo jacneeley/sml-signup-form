@@ -1,0 +1,13 @@
+---
+import Base from "../layouts/base.astro"
+import Nav from "../components/nav.jsx";
+import AdminView from "../components/admin.jsx";
+
+const pageTitle = "Admin"
+---
+<Base pageTitle = {pageTitle}>
+	<Nav client:load/>
+	<div class="content">
+		<AdminView client:load/>
+	</div>
+</Base>

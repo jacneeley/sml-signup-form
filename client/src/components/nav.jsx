@@ -19,12 +19,12 @@ export default function Nav(){
     return (
         <div id="nav" className="nav-links">
             <h2>Signup Form</h2>
-            <a onClick={()=> handlePopup()}>Info</a>
+            <a onClick={()=> handlePopup()}>Data Policy</a>
             <hr></hr>
             <div className={popup == false ? "pop-up" : "pop-up display-popup"}>
                 <a className="close-btn" onClick={() => handlePopup()}>[x]</a>
                 <div className="popup-content">
-                    <h2>Info</h2>
+                    <h2>Data Policy</h2>
                     <p>The San Marcos Library will not save or distribute your data.</p>
                     <p>All Data gathered in this form is for attendance purposes only.</p>
                     <p>For more information refer to our data use policy.</p>

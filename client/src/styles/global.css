@@ -117,16 +117,22 @@ hr{
     max-width: 600px;
     padding: 1rem;
     position: relative;
+    text-align: left;
 }
 
 label{
     display: block;
+    margin: 0 auto;
     padding-top: .5rem;
     color: #5c8727;
 }
 
 input {
     margin-top: .5rem;
+}
+
+.fields{
+    margin: 0 auto;
 }
 
 .text-input{
@@ -157,4 +163,26 @@ input {
     background-color: var(--nav-link-hover);
     color: whitesmoke;
     border-color: var(--nav-color);
+}
+
+/*table*/
+table {
+    border: 2px solid forestgreen;
+    width: 1000px;
+    height: 200px;
+    margin: 0 auto;
+    font-size: medium;
+}
+
+th {
+    border-bottom: 1px solid black;
+    
+}
+
+td {
+    text-align : center;
+    background-color: rgb(
+        220, 
+        220, 
+        220);
 }

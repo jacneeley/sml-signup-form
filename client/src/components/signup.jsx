@@ -23,11 +23,8 @@ export default function form(){
         const hasLaptop = formData.get("laptop");
 
         if(!parentName || !email || !phone || !childName || !childAge || !hasLaptop){
-            alert("Please enter all missing values");
+            alert("You cannot leave fields blank.");
             return;
-        }
-        else {
-            console.log("No Missing Fields: Success!");
         }
 
         const payload = Object.fromEntries(formData);
@@ -76,7 +73,7 @@ export default function form(){
                 <input className="text-input" name="childAge" type="text" min="9" maxLength="2" required/>
 
 
-                <p>A laptop is needed for this camp.The library can provide one to those who need one, but there is a limited quantity.</p>
+                <p>A laptop is needed for this camp. The library can provide one to those who need one, but there is a limited quantity.</p>
                 <p>Will your child be able to bring their own laptop?</p>
 
 
