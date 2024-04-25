@@ -2,10 +2,12 @@ from flask import Flask, redirect ,url_for, request, jsonify
 from flask_cors import CORS, cross_origin
 from utils.initApp import app
 from utils.dbController import initDB, createUser, deleteUser, displayAll
+from utils.auth import auth
 
 CORS(app, resources={r"/attendees/*": {"origins": "*"},
                      r"/attendees/add": {"origins": "*"},
-                     r"/attendees/del": {"origins": "*"}})
+                     r"/attendees/del": {"origins": "*"},
+                     r"/auth/": {"origins": "*"}})
 
 with app.app_context():
         initDB()
@@ -29,6 +31,12 @@ def add_attendees():
 def del_attendees(id):
         deleteUser(id)
         return redirect(url_for('attendees'))
+
+@app.route("/auth/", methods=['POST'], strict_slashes=False)
+def authenticate():
+        admin = request.get_json()
+        return auth(admin)
+
 
 if __name__ == "__main__":
         app.run(debug=True)

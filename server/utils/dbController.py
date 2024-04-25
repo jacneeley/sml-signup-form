@@ -45,7 +45,7 @@ def initDB():
         usr = User(
             "admin@test.com",
             "Admin",
-            "999-999-9988",
+            "972-956-6072",
             "Jacob Neeley",
             23,
             "Yes"
