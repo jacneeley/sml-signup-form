@@ -8,6 +8,10 @@ This is a lightweight full stack registration app for my course, Code Camp 2024.
 - flask
 - python 3.11
 
+## Code
+- [Astro + React Client](https://github.com/jacneeley/sml-signup-form/tree/main/client/src)
+- [Flask Server](https://github.com/jacneeley/sml-signup-form/tree/main/server)
+
 ## App Flow
 This app simply collects data from users for the purpose of getting a count of interested attendees.<br> 
 #### Data is entered into the client. 
