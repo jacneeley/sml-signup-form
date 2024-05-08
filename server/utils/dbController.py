@@ -35,7 +35,7 @@ class UserSchema(Schema):
     laptop = fields.String()
 
 
-def initDB():
+def initDB() -> None:
     #create instance
     db.create_all()
         
@@ -59,7 +59,7 @@ def initDB():
         print("db found!")
 
 
-def createUser(user):    
+def createUser(user:dict) -> None:    
     addUser = User(
         user.get("email"),
         user.get("parentName"),
@@ -73,7 +73,7 @@ def createUser(user):
     db.session.commit()
 
 
-def deleteUser(id):
+def deleteUser(id: int) -> None:
     if db.session.query(exists().where(User._id == id)).scalar() is True:
         delUser = db.get_or_404(User,id)
         db.session.delete(delUser)
@@ -83,7 +83,7 @@ def deleteUser(id):
         print("User does not exist")
 
    
-def displayAll():
+def displayAll() -> dict:
     user_schema = UserSchema()
     user_data = db.session.query(User).all()
     json_output = json.loads(user_schema.dumps(user_data, many=True))

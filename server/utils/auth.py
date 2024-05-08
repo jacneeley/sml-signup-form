@@ -4,7 +4,7 @@ from sqlalchemy import and_
 from .initApp import db
 from .dbController import User
 
-def auth(admin):
+def auth(admin: dict) -> str:
     print(admin['email'], admin['phone'])
     admin_exists = db.session.query(User).filter(User.email == admin['email']).first()
     print(admin_exists)
